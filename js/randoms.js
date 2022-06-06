@@ -1,65 +1,42 @@
+// class Random{
 
-// process.send('listo');
-// process.on('mensaje',(cant)=>{
-//     if(cant === 'start'){
-//     const data = generarRandom(cant);
-//     process.send(data);
+//     constructor(){
 //     }
-// })
+    
+//     generarRandom(cantidad){
+//         let cant = 0;
+//         const nums = [];
+//         const objNum = {};
 
-// function generarRandom(cantidad){
-//     let cant = 0;
-//     const nums = [];
-//     const objNum = {};
+//         cantidad ? cant = parseInt(cantidad) : cant = 100000000;
 
-//     cantidad ? cant = parseInt(cantidad) : cant = 100000000;
-
-//     for (let i = 0; i < cant; i++) {
-//         let num = Math.floor(Math.random() * (1001 - 1)+1);
-//         nums.push(num);
-//         objNum[num] ? objNum[num]++ : objNum[num] = 1;
+//         for (let i = 0; i < cant; i++) {
+//             let num = Math.floor(Math.random() * (1001 - 1)+1);
+//             nums.push(num);
+//             objNum[num] ? objNum[num]++ : objNum[num] = 1;
+//         }
+//         return objNum;
 //     }
-//     // console.log(nums);
-//     // console.log(objNum);
-//     return objNum;
+
 // }
 
+// module.exports = Random;
 
-// process.on('cantidad',(cant)=>{
-//     const random = new Random();
-//     const data = random.generarRandom(cant);
-//     process.send(data);
-// })
+process.on('mensaje',(cant)=>{
+    process.send(generarRandom(cant));
+})
 
+function generarRandom(cantidad){
+    let cant = 0;
+    const nums = [];
+    const objNum = {};
 
+    cantidad ? cant = parseInt(cantidad) : cant = 100000000;
 
-
-
-
-
-
-class Random{
-
-    constructor(){
+    for (let i = 0; i < cant; i++) {
+        let num = Math.floor(Math.random() * (1001 - 1)+1);
+        nums.push(num);
+        objNum[num] ? objNum[num]++ : objNum[num] = 1;
     }
-    
-    generarRandom(cantidad){
-        let cant = 0;
-        const nums = [];
-        const objNum = {};
-
-        cantidad ? cant = parseInt(cantidad) : cant = 100000000;
-
-        for (let i = 0; i < cant; i++) {
-            let num = Math.floor(Math.random() * (1001 - 1)+1);
-            nums.push(num);
-            objNum[num] ? objNum[num]++ : objNum[num] = 1;
-        }
-        // console.log(nums);
-        // console.log(objNum);
-        return objNum;
-    }
-
+    return objNum;
 }
-
-module.exports = Random;
