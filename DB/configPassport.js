@@ -6,19 +6,11 @@ const localStrategy = require('passport-local').Strategy;
 const connectMongo = require('connect-mongo');
 const Usuario = require('../js/usuarios');
 const usuario = new Usuario();
-require('dotenv').config({ path: '../.env' });
-
-// const mongoUrl = `mongodb+srv://${process.env.USERNAMEDB}:${process.env.PASSWORDDB}@cluster0.33nzl.mongodb.net/${process.env.SESSIONSDB}?retryWrites=true&w=majority`;
-// console.log(mongoUrl);
-// console.log(typeof(mongoUrl));
-// console.log(`mongodb+srv://${process.env.USERNAMEDB}:${process.env.PASSWORDDB}@cluster0.33nzl.mongodb.net/${process.env.SESSIONSDB}?retryWrites=true&w=majority`);
-
-// EN ESTA VARIABLE "mongoUrl" ME TRAE LA MISMA INFORMACION QUE EL STRING DONDE ESTA LA CREDENCIAL DE MONGO ATLAS, PERO NO FUNCIONA CON LA VARIABLE O CON LAGUNA DE LAS OTRAS FORMAS QUE TENGO COMENTADAS
-// COLOCANDO EL STRING DIRECTAMENTE COMO ESTA AHORA, ME FUNCIONA PERFECTO
+require('dotenv').config();
 
 app.use(session({
   store: connectMongo.create({
-    mongoUrl: `mongodb+srv://juandavid:azyz9510@cluster0.33nzl.mongodb.net/sessions?retryWrites=true&w=majority`,
+    mongoUrl: `mongodb+srv://${process.env.USERNAMEDB}:${process.env.PASSWORDDB}@cluster0.33nzl.mongodb.net/${process.env.SESSIONSDB}?retryWrites=true&w=majority`,
     mongoOptions: {useNewUrlParser: true, useUnifiedTopology: true},
     ttl: 600
   }),

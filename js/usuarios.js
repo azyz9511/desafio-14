@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const usuarioSchema = require('../DB/usuarioSchema');
 const bCrypt = require('bcrypt');
-require('dotenv').config({ path: '../.env' });
+require('dotenv').config();
 
 class Usuario{
     
@@ -11,7 +11,7 @@ class Usuario{
 
     async connectDB(){
         try{
-            const URL = `mongodb+srv://juandavid:azyz9510@cluster0.33nzl.mongodb.net/usuarios?retryWrites=true&w=majority`;
+            const URL = `mongodb+srv://${process.env.USERNAMEDB}:${process.env.PASSWORDDB}@cluster0.33nzl.mongodb.net/${process.env.USERSDB}?retryWrites=true&w=majority`;
             let connect = await mongoose.connect(URL,{
                 useNewUrlParser: true,
                 useUnifiedTopology: true

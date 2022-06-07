@@ -4,12 +4,12 @@ const cookieParser = require('cookie-parser');
 const session = require('express-session');
 const connectMongo = require('connect-mongo');
 const passport = require('../DB/configPassport');
-require('dotenv').config({ path: '../.env' });
+require('dotenv').config();
 
 router.use(cookieParser());
 router.use(session({
   store: connectMongo.create({
-    mongoUrl: `mongodb+srv://juandavid:azyz9510@cluster0.33nzl.mongodb.net/sessions?retryWrites=true&w=majority`,
+    mongoUrl: `mongodb+srv://${process.env.USERNAMEDB}:${process.env.PASSWORDDB}@cluster0.33nzl.mongodb.net/${process.env.SESSIONSDB}?retryWrites=true&w=majority`,
     mongoOptions: {useNewUrlParser: true, useUnifiedTopology: true},
     ttl: 600
   }),

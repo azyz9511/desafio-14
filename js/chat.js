@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const mensajeSchema = require('../DB/mensajeSchema')
 const {normalize, schema, denormalize} = require('normalizr')
 const util = require('util');
-require('dotenv').config({ path: '../.env' });
+require('dotenv').config();
 
 class Chat{
     
@@ -12,7 +12,7 @@ class Chat{
 
     async connectDB(){
         try{
-            const URL = `mongodb+srv://juandavid:azyz9510@cluster0.33nzl.mongodb.net/chat?retryWrites=true&w=majority`;
+            const URL = `mongodb+srv://${process.env.USERNAMEDB}:${process.env.PASSWORDDB}@cluster0.33nzl.mongodb.net/${process.env.CHATDB}?retryWrites=true&w=majority`;
             let connect = await mongoose.connect(URL,{
                 useNewUrlParser: true,
                 useUnifiedTopology: true
